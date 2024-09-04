@@ -1,47 +1,66 @@
-import { Button, Container, Flex, HStack, Text, useColorMode } from "@chakra-ui/react";
+import React from "react";
 import { Link } from "react-router-dom";
 
-import { PlusSquareIcon } from "@chakra-ui/icons";
-import { IoMoon } from "react-icons/io5";
-import { LuSun } from "react-icons/lu";
-
 const Navbar = () => {
-	const { colorMode, toggleColorMode } = useColorMode();
+    return (
+        <div style={{ maxWidth: "1140px", padding: "0 16px", margin: "0 auto" }}>
+            <div
+                style={{
+                    height: "64px",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    flexDirection: "column",
+                }}
+            >
+                <h1
+                    style={{
+                        fontSize: "28px",
+                        fontWeight: "bold",
+                        textTransform: "uppercase",
+                        textAlign: "center",
+                        backgroundImage: "linear-gradient(to right, cyan, blue)",
+                        backgroundClip: "text",
+                        color: "transparent",
+                    }}
+                >
+                    <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
+                        Boutique
+                    </Link>
+                </h1>
 
-	return (
-		<Container maxW={"1140px"} px={4}>
-			<Flex
-				h={16}
-				alignItems={"center"}
-				justifyContent={"space-between"}
-				flexDir={{
-					base: "column",
-					sm: "row",
-				}}
-			>
-				<Text
-					fontSize={{ base: "22", sm: "28" }}
-					fontWeight={"bold"}
-					textTransform={"uppercase"}
-					textAlign={"center"}
-					bgGradient={"linear(to-r, cyan.400, blue.500)"}
-					bgClip={"text"}
-				>
-					<Link to={"/"}>Product Store 🛒</Link>
-				</Text>
-
-				<HStack spacing={2} alignItems={"center"}>
-					<Link to={"/create"}>
-						<Button>
-							<PlusSquareIcon fontSize={20} />
-						</Button>
-					</Link>
-					<Button onClick={toggleColorMode}>
-						{colorMode === "light" ? <IoMoon /> : <LuSun size='20' />}
-					</Button>
-				</HStack>
-			</Flex>
-		</Container>
-	);
+                <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                    <Link to="/create">
+                        <button
+                            style={{
+                                padding: "8px",
+                                backgroundColor: "lightgray",
+                                border: "none",
+                                borderRadius: "4px",
+                                cursor: "pointer",
+                            }}
+                        >
+                            +
+                        </button>
+                    </Link>
+                    <button
+                        onClick={() => {
+                            document.body.classList.toggle("dark-mode");
+                        }}
+                        style={{
+                            padding: "8px",
+                            backgroundColor: "lightgray",
+                            border: "none",
+                            borderRadius: "4px",
+                            cursor: "pointer",
+                        }}
+                    >
+                        🌙
+                    </button>
+                </div>
+            </div>
+        </div>
+    );
 };
+
 export default Navbar;
